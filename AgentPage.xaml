@@ -16,7 +16,22 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBlock Name="TBCount" FontSize="20" Height="20"></TextBlock>
+            <TextBlock Name="TBAllRecords" FontSize="20" Height="20"></TextBlock>
+            <Button Name="LeftDirButton" Click="LeftDirButton_Click" Content="&lt;" Width="20" Height="20"></Button>
+            <ListBox MouseUp="PageListBox_MouseUp" FontSize="20" Name="PageListBox">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+            <Button Name="RightDirButton" Content="&gt;" Width="20" Height="20" Click="RightDirButton_Click"></Button>
+        </StackPanel>
+
         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left">
             <StackPanel Margin="10" Orientation="Horizontal">
                 <Grid>
