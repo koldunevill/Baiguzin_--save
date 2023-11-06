@@ -8,7 +8,105 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AgentPage"  FontFamily="Century Gothic">
 
-    <Grid>
-        <Button Content="go" Height="30" Width="175" Background="#B175EE" Click="Button_Click"></Button>
+
+
+
+    <Grid>  
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left">
+            <StackPanel Margin="10" Orientation="Horizontal">
+                <Grid>
+                    <TextBox TextAlignment="Left" FontSize="20" Width="255"  VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="TBoxSearch" Margin="5,0,0,0" Height="32" TextChanged="TBoxSearch_TextChanged"/>
+                    <TextBlock TextAlignment="Center" IsHitTestVisible="False" Text="Введите для поиска" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="Black" FontSize="20">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Text, ElementName=TBoxSearch}" Value="">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </Grid>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Left" Margin="10">
+                <ComboBox Text="Сортировака" Name="ComboType" SelectionChanged="ComboType_SelectionChanged" FontSize="15" Width="179" Height="35">
+                    <TextBlock>Все</TextBlock>
+                    <TextBlock>Приоритет убывание</TextBlock>
+                    <TextBlock>Приоритет возрастание</TextBlock>
+                    <TextBlock>Наименование убывание</TextBlock>
+                    <TextBlock>Наименование возрастание</TextBlock>
+                </ComboBox>
+            </StackPanel>
+            
+            <StackPanel HorizontalAlignment="Left" Margin="10">
+                <ComboBox Name="ComboType2" SelectionChanged="ComboType2_SelectionChanged" FontSize="15" Width="180" Height="35">
+                    <TextBlock>Все</TextBlock>
+                    <TextBlock>МФО</TextBlock>
+                    <TextBlock>ЗАО</TextBlock>
+                    <TextBlock>МКК</TextBlock>
+                    <TextBlock>ОАО</TextBlock>
+                    <TextBlock>ПАО</TextBlock>
+                    <TextBlock>ООО</TextBlock>
+                </ComboBox>
+            </StackPanel>
+            
+        </WrapPanel>
+
+
+        <ListView Name="AgentListView" Margin="2" Grid.Row="2">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+
+                        <Image Margin="10" Width="100" Grid.Column="0" Grid.RowSpan="2" Stretch="UniformToFill" HorizontalAlignment="Center">
+                            <Image.Source>
+                                <Binding Path="Logo">
+                                    <Binding.TargetNullValue>
+                                        <ImageSource>
+                                            Res/picture.png
+                                        </ImageSource>
+                                    </Binding.TargetNullValue>
+                                </Binding>
+                            </Image.Source>
+                        </Image>
+                        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="{Binding AgentType.Title}" FontSize="20" FontWeight="Heavy"></TextBlock>
+                            <TextBlock Text="|" FontSize="20" FontWeight="Heavy"></TextBlock>
+                            <TextBlock Text="{Binding Title}" FontSize="20" FontWeight="Heavy"></TextBlock>
+                        </StackPanel>
+                        <TextBlock DataContext="{Binding ProductSale}" Text="{Binding ProductCount, StringFormat={}{0} продаж за год}" HorizontalAlignment="Left" FontSize="20" Grid.Column="1" Grid.Row="1"></TextBlock>
+                        <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
+                            <TextBlock Text="{Binding Phone}" FontSize="20" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left"></TextBlock>
+                            <TextBlock Text="|" FontSize="20" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left"></TextBlock>
+                            <TextBlock Text="{Binding Email}" FontSize="20" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left"></TextBlock>
+                        </StackPanel>
+                        <TextBlock Text="{Binding Priority, StringFormat =Приоритетность: {0}}" FontSize="20" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left"></TextBlock>
+
+
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>
