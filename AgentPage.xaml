@@ -72,6 +72,10 @@
                     <TextBlock>ООО</TextBlock>
                 </ComboBox>
             </StackPanel>
+
+            <StackPanel HorizontalAlignment="Left" Margin="10">
+                <Button Content="Добавить" Name="AddBtn" Click="AddBtn_Click"></Button>
+            </StackPanel>
             
         </WrapPanel>
 
@@ -86,7 +90,7 @@
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition Height="25"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
@@ -110,14 +114,14 @@
                             <TextBlock Text="|" FontSize="20" FontWeight="Heavy"></TextBlock>
                             <TextBlock Text="{Binding Title}" FontSize="20" FontWeight="Heavy"></TextBlock>
                         </StackPanel>
-                        <TextBlock DataContext="{Binding ProductSale}" Text="{Binding ProductCount, StringFormat={}{0} продаж за год}" HorizontalAlignment="Left" FontSize="20" Grid.Column="1" Grid.Row="1"></TextBlock>
+                        <TextBlock  Text="{Binding ProductCount, StringFormat={}{0} продаж за год}" HorizontalAlignment="Left" FontSize="20" Grid.Column="1" Grid.Row="1"></TextBlock>
                         <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
                             <TextBlock Text="{Binding Phone}" FontSize="20" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left"></TextBlock>
                             <TextBlock Text="|" FontSize="20" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left"></TextBlock>
                             <TextBlock Text="{Binding Email}" FontSize="20" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left"></TextBlock>
                         </StackPanel>
                         <TextBlock Text="{Binding Priority, StringFormat =Приоритетность: {0}}" FontSize="20" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left"></TextBlock>
-
+                        <Button Grid.Column="1" Grid.Row="4" Content="Редактировать" Name="EditBtn" Click="EditBtn_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
 
                     </Grid>
                 </DataTemplate>

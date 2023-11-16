@@ -38,10 +38,10 @@ namespace Baiguzin_Глазки_save
             ComboType2.SelectedIndex = 0;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        /*private void Button_Click(object sender, RoutedEventArgs e)
         {
             Manager.MainFrame.Navigate(new AddEditPage());
-        }
+        }*/
 
         private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -214,5 +214,14 @@ namespace Baiguzin_Глазки_save
             ChangePage(2, null);
         }
 
+        private void EditBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new AddEditPage((sender as Button).DataContext as Agent));
+        }
+
+        private void AddBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new AddEditPage(null));
+        }
     }
 }

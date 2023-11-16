@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Baiguzin_Глазки_save"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" FontFamily="Century Gothic" Icon="Res/Глазки-save.ico" MinHeight="200" MinWidth="500">
+        Title="MainWindow" Height="450" Width="800" FontFamily="Century Gothic" Icon="Res/Глазки-save.ico" MinHeight="200" MinWidth="700">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="75"/>
