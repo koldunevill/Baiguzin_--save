@@ -37,7 +37,7 @@
 
         <StackPanel Grid.Column="0" Grid.Row="3" Orientation="Vertical" Grid.RowSpan="4">
             <TextBlock Text="Логотип" FontFamily="15" Height="20" Width="auto" Margin="5"/>
-            <Image Name="LogoImage" Stretch="UniformToFill" MinHeight="50" Height="100" Width="100"
+            <Image Name="LogoImage" Stretch="Uniform" MinHeight="50" Height="128" MinWidth="100" Width="128"
                    HorizontalAlignment="Center" Margin="5">
                 <Image.Source>
                     <Binding Path="Logo" TargetNullValue="Res\picture.png"></Binding>

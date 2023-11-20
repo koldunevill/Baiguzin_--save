@@ -221,7 +221,19 @@ namespace Baiguzin_Глазки_save
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-            Manager.MainFrame.Navigate(new AddEditPage(null));
+            Manager.MainFrame.Navigate(new AddEditPage((sender as Button).DataContext as Agent));
         }
+
+        private void AgentPage_OnIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                Baiguzin_glazkiEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                AgentListView.ItemsSource = Baiguzin_glazkiEntities.GetContext().Agent.ToList();
+            }
+
+            UpdateAgent();
+        }
+
     }
 }

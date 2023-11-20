@@ -4,10 +4,9 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Baiguzin_Глазки_save"
-      mc:Ignorable="d" 
+      mc:Ignorable="d" IsVisibleChanged="AgentPage_OnIsVisibleChanged"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AgentPage"  FontFamily="Century Gothic">
-
 
 
 
@@ -109,6 +108,7 @@
                                 </Binding>
                             </Image.Source>
                         </Image>
+                        <Button Grid.Column="0" Grid.Row="3" Content="Редактировать" Name="EditBtn" Click="EditBtn_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
                             <TextBlock Text="{Binding AgentType.Title}" FontSize="20" FontWeight="Heavy"></TextBlock>
                             <TextBlock Text="|" FontSize="20" FontWeight="Heavy"></TextBlock>
@@ -121,8 +121,6 @@
                             <TextBlock Text="{Binding Email}" FontSize="20" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left"></TextBlock>
                         </StackPanel>
                         <TextBlock Text="{Binding Priority, StringFormat =Приоритетность: {0}}" FontSize="20" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left"></TextBlock>
-                        <Button Grid.Column="1" Grid.Row="4" Content="Редактировать" Name="EditBtn" Click="EditBtn_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
