@@ -32,7 +32,10 @@ namespace Baiguzin_Глазки_save
                 InAgentExist = true;
                 _currentAgent = SelectedAgent;
             }
-
+            else
+            {
+                HistoryBtn.Visibility = Visibility.Hidden;
+            }
             DataContext = _currentAgent;
         }
 
@@ -135,6 +138,11 @@ namespace Baiguzin_Глазки_save
                     }
                 }
             }
+        }
+
+        private void HistoryBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new AgentSalePage(_currentAgent));
         }
     }
 }

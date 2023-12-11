@@ -12,6 +12,9 @@ namespace Baiguzin_Глазки_save
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Windows.Media;
+    using System.Windows.Navigation;
+
     public partial class Agent
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -45,6 +48,36 @@ namespace Baiguzin_Глазки_save
         public virtual ICollection<Shop> Shop { get; set; }
 
 
+        public int skidka => Sale();
+        public int Sale()
+        {
+            var productSale = Baiguzin_glazkiEntities.GetContext().ProductSale.Where(p => p.AgentID == ID).ToList();
+            var products = Baiguzin_glazkiEntities.GetContext().Product.ToList();
+            decimal sale = 0;
+            int skidka = 0;
+            foreach (var product in products)
+            {
+                foreach (var item2 in productSale)
+                {
+                    if (product.ID == item2.ProductID)
+                    {
+                        sale += product.MinCostForAgent * item2.ProductCount;
+                    }
+                }
+            }
+            if (sale >= 0 && sale < 10000)
+                skidka = 0;
+            if (sale >= 10000 && sale < 50000)
+                skidka = 5;
+            if(sale >=50000 && sale<150000)
+                skidka = 10;
+            if (sale >= 150000 && sale < 500000)
+                skidka = 20;
+            if(sale>=500000)
+                skidka = 25;
+            return skidka;
+        }
+        
         public int ProductCount => GetAllProducts();
         public int GetAllProducts()
         {
@@ -57,5 +90,23 @@ namespace Baiguzin_Глазки_save
 
             return count;
         }
+
+
+
+        public SolidColorBrush FontStyle
+        {
+            get
+            {
+                if (skidka >=10)
+                {
+                    return (SolidColorBrush)new BrushConverter().ConvertFromString("LightGreen");
+                }
+                else
+                {
+                    return (SolidColorBrush)new BrushConverter().ConvertFromString("White");
+                }
+            }
+        }
+
     }
 }

@@ -84,6 +84,8 @@
             <Button Content="Удалить" Name="DeleteBtn" Click="DeleteBtn_Click" Margin="5"
                     Opacity="{Binding ID}"/>
         </StackPanel>
-        
+
+        <Button Content="История продаж" Grid.Column="0" Grid.Row="7" Name="HistoryBtn" Click="HistoryBtn_Click" ></Button>
+
     </Grid>
 </Page>

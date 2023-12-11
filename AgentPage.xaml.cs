@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,7 +24,7 @@ namespace Baiguzin_Глазки_save
         int CountRecords;
         int CountPage;
         int CurrentPage = 0;
-        List<Agent> CurrentPageList = new List <Agent>();
+        List<Agent> CurrentPageList = new List<Agent>();
         List<Agent> TableList;
 
         public AgentPage()
@@ -36,6 +37,7 @@ namespace Baiguzin_Глазки_save
 
             ComboType.SelectedIndex = 0;
             ComboType2.SelectedIndex = 0;
+            EditPriorityBtn.Visibility = Visibility.Hidden;
         }
 
         /*private void Button_Click(object sender, RoutedEventArgs e)
@@ -55,7 +57,7 @@ namespace Baiguzin_Глазки_save
 
         private void ComboType2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UpdateAgent();  
+            UpdateAgent();
         }
         private void UpdateAgent()
         {
@@ -108,8 +110,8 @@ namespace Baiguzin_Глазки_save
                 currentAgent = currentAgent.Where(p => p.AgentTypeString == "ООО").ToList();
             }
 
-            currentAgent = currentAgent.Where(p => PhoneFormat(p.Phone.ToLower()).Trim().Contains(TBoxSearch.Text.ToLower()) || p.Title.ToLower().Contains(TBoxSearch.Text.ToLower()) 
-            ||  p.Email.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
+            currentAgent = currentAgent.Where(p => PhoneFormat(p.Phone.ToLower()).Trim().Contains(TBoxSearch.Text.ToLower()) || p.Title.ToLower().Contains(TBoxSearch.Text.ToLower())
+            || p.Email.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
             AgentListView.ItemsSource = currentAgent;
 
             TableList = currentAgent;
@@ -200,7 +202,7 @@ namespace Baiguzin_Глазки_save
                 AgentListView.Items.Refresh();
             }
         }
-        
+
         private void PageListBox_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             ChangePage(0, Convert.ToInt32(PageListBox.SelectedItem.ToString()) - 1);
@@ -235,5 +237,45 @@ namespace Baiguzin_Глазки_save
             UpdateAgent();
         }
 
+
+        private void EditPriority_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (AgentListView.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Выберите агента/ов для редактирования приоритета");
+                return;
+            }
+            else
+            {
+                var p = (AgentListView.SelectedItems.Cast<Agent>().Select(selectedItem => selectedItem.Priority)).Prepend(0).Max();
+                var window = new EditPriority(p);
+                window.ShowDialog();
+                if (string.IsNullOrEmpty(window.Priority.Text))
+                {
+                    return;
+                }
+
+                foreach (Agent selectedItem in AgentListView.SelectedItems)
+                {
+                    selectedItem.Priority = Convert.ToInt32(window.Priority.Text);
+                }
+
+                try
+                {
+                    Baiguzin_glazkiEntities.GetContext().SaveChanges();
+                    window.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                UpdateAgent();
+            }
+        }
+
+        private void AgentListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            EditPriorityBtn.Visibility = AgentListView.SelectedItems.Count > 1 ? Visibility.Visible : Visibility.Hidden;
+        }
     }
 }

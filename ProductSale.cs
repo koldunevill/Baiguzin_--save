@@ -22,5 +22,6 @@ namespace Baiguzin_Глазки_save
         public System.DateTime SaleDate { get; set; }
         public virtual Agent Agent { get; set; }
         public virtual Product Product { get; set; }
+
     }
 }

@@ -64,11 +64,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddSalesPage.xaml.cs">
+      <DependentUpon>AddSalesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Agent.cs">
       <DependentUpon>Baiguzin_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="AgentPriorityHistory.cs">
       <DependentUpon>Baiguzin_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AgentSalePage.xaml.cs">
+      <DependentUpon>AgentSalePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="AgentType.cs">
       <DependentUpon>Baiguzin_Model.tt</DependentUpon>
@@ -77,6 +83,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Baiguzin_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EditPriority.xaml.cs">
+      <DependentUpon>EditPriority.xaml</DependentUpon>
     </Compile>
     <Compile Include="Material.cs">
       <DependentUpon>Baiguzin_Model.tt</DependentUpon>
@@ -112,7 +121,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddSalesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AgentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AgentSalePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditPriority.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
